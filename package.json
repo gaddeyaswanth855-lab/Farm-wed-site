@@ -1,0 +1,15 @@
+{
+  "name": "kisanseva-ai",
+  "version": "1.0.0",
+  "description": "AI-Powered Agriculture Crop Advisory & Climate-Resilient Farming Platform",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build && npm --prefix server run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
