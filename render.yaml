@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: kisanseva-ai
+    env: node
+    plan: free
+    buildCommand: npm run build:render
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: info
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false

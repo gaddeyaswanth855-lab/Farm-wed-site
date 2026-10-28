@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const envSchema = z.object({
-  PORT: z.string().default('5000').transform((v) => parseInt(v, 10)),
+  PORT: z.union([z.string(), z.number()]).default('5000').transform((v) => (typeof v === 'number' ? v : parseInt(String(v), 10))),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   CLIENT_URL: z.string().default('http://localhost:5173'),
   DATABASE_URL: z.string().optional(),

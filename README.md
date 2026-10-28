@@ -52,7 +52,17 @@
 
 ## 🚀 Quick Start Guide
 
-### 1. Prerequisites
+### Deploying to Render
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/gaddeyaswanth855-lab/Farm-wed-site)
+
+The repository includes a ready-to-use `render.yaml` blueprint:
+- **Build Command**: `npm run build:render`
+- **Start Command**: `npm start`
+- **Health Check Path**: `/health`
+
+---
+
+### Local Development Setup
 - [Node.js](https://nodejs.org/) (v18 or higher recommended)
 - [npm](https://www.npmjs.com/)
 
@@ -101,3 +111,4 @@ npm run build
 
 ## 📄 License
 This project is open-source and created for empowering smallholder farmers and agricultural communities.
+

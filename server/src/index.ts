@@ -1,10 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 import { env } from './config/env.js';
 import { db } from './config/db.js';
 import v1Router from './routes/v1/index.js';
 import { errorHandler } from './middleware/errorMiddleware.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -38,6 +44,26 @@ app.get('/health', (req, res) => {
 
 // API Routes
 app.use('/api/v1', v1Router);
+
+// Static frontend delivery in production or when dist exists
+const possibleDistPaths = [
+  path.resolve(__dirname, '../../client/dist'),
+  path.resolve(__dirname, '../../../client/dist'),
+  path.resolve(process.cwd(), 'client/dist'),
+];
+
+const clientDistPath = possibleDistPaths.find((p) => fs.existsSync(p));
+
+if (clientDistPath) {
+  console.log(`📦 Serving static client from: ${clientDistPath}`);
+  app.use(express.static(clientDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path === '/health') {
+      return next();
+    }
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+}
 
 // Global Error Handler
 app.use(errorHandler);
