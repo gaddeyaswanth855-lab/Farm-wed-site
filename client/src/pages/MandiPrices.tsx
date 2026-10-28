@@ -172,7 +172,7 @@ export const MandiPrices: React.FC = () => {
               <input
                 type="text"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
                 placeholder="Search commodity (e.g. Onion, Soybean, Cotton, Wheat, Paddy, Orange)..."
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"
               />
@@ -180,7 +180,7 @@ export const MandiPrices: React.FC = () => {
 
             <select
               value={stateFilter}
-              onChange={(e) => setStateFilter(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setStateFilter(e.target.value)}
               className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"
             >
               <option value="">All States</option>
@@ -272,7 +272,9 @@ export const MandiPrices: React.FC = () => {
                 <input
                   type="text"
                   value={arbitrageData.commodity}
-                  onChange={(e) => setArbitrageData({ ...arbitrageData, commodity: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setArbitrageData({ ...arbitrageData, commodity: e.target.value })
+                  }
                   className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
                   required
                 />
@@ -286,7 +288,7 @@ export const MandiPrices: React.FC = () => {
                   <input
                     type="number"
                     value={arbitrageData.quantityQuintals}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setArbitrageData({ ...arbitrageData, quantityQuintals: Number(e.target.value) })
                     }
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
@@ -300,7 +302,7 @@ export const MandiPrices: React.FC = () => {
                   <input
                     type="number"
                     value={arbitrageData.distanceKm}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setArbitrageData({ ...arbitrageData, distanceKm: Number(e.target.value) })
                     }
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
@@ -316,7 +318,7 @@ export const MandiPrices: React.FC = () => {
                 <input
                   type="number"
                   value={arbitrageData.localPricePerQuintal}
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setArbitrageData({ ...arbitrageData, localPricePerQuintal: Number(e.target.value) })
                   }
                   className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
@@ -331,7 +333,7 @@ export const MandiPrices: React.FC = () => {
                 <input
                   type="number"
                   value={arbitrageData.destinationPricePerQuintal}
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setArbitrageData({
                       ...arbitrageData,
                       destinationPricePerQuintal: Number(e.target.value)
@@ -349,7 +351,7 @@ export const MandiPrices: React.FC = () => {
                 <input
                   type="text"
                   value={arbitrageData.destinationMarket}
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setArbitrageData({ ...arbitrageData, destinationMarket: e.target.value })
                   }
                   className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
@@ -468,7 +470,9 @@ export const MandiPrices: React.FC = () => {
                 <input
                   type="text"
                   value={storageData.commodity}
-                  onChange={(e) => setStorageData({ ...storageData, commodity: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setStorageData({ ...storageData, commodity: e.target.value })
+                  }
                   className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
                   required
                 />
@@ -482,7 +486,7 @@ export const MandiPrices: React.FC = () => {
                   <input
                     type="number"
                     value={storageData.quantityQuintals}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setStorageData({ ...storageData, quantityQuintals: Number(e.target.value) })
                     }
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
@@ -498,7 +502,7 @@ export const MandiPrices: React.FC = () => {
                     min="1"
                     max="12"
                     value={storageData.storageMonths}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setStorageData({ ...storageData, storageMonths: Number(e.target.value) })
                     }
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
@@ -514,7 +518,7 @@ export const MandiPrices: React.FC = () => {
                 <input
                   type="number"
                   value={storageData.currentPricePerQuintal}
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setStorageData({
                       ...storageData,
                       currentPricePerQuintal: Number(e.target.value)
@@ -530,7 +534,9 @@ export const MandiPrices: React.FC = () => {
                   type="checkbox"
                   id="perishableCheck"
                   checked={storageData.isPerishable}
-                  onChange={(e) => setStorageData({ ...storageData, isPerishable: e.target.checked })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setStorageData({ ...storageData, isPerishable: e.target.checked })
+                  }
                   className="rounded text-amber-500 focus:ring-amber-500 bg-slate-950 border-slate-700"
                 />
                 <label htmlFor="perishableCheck" className="text-xs text-slate-300">

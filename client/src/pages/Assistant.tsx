@@ -305,7 +305,7 @@ export const Assistant: React.FC = () => {
 
           {/* Form */}
           <form
-            onSubmit={(e) => {
+            onSubmit={(e: React.FormEvent) => {
               e.preventDefault();
               handleSendMessage();
             }}
@@ -336,7 +336,7 @@ export const Assistant: React.FC = () => {
             <input
               type="text"
               value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)}
               placeholder="Ask anything about pests, fertilizers, crop rotations, or market prices..."
               className="flex-1 bg-slate-950 border border-slate-700/80 rounded-2xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-blue-500"
             />

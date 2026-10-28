@@ -17,7 +17,7 @@ import { useFarm } from '../context/FarmContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useSpeechSynthesis } from '../hooks/useSpeechSynthesis';
 import { calculateFertilizerPlanApi } from '../api/advisories';
-import { FertilizerPlan } from '../types';
+import { FertilizerPlan, Plot } from '../types';
 
 export const SoilDoctor: React.FC = () => {
   const { plots, selectedPlot, setSelectedPlot } = useFarm();
@@ -130,8 +130,8 @@ export const SoilDoctor: React.FC = () => {
                 </label>
                 <select
                   value={selectedPlot?.id || ''}
-                  onChange={(e) => {
-                    const p = plots.find((plot) => plot.id === e.target.value) || null;
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    const p = plots.find((plot: Plot) => plot.id === e.target.value) || null;
                     setSelectedPlot(p);
                     if (p) {
                       setSizeAcres(p.size_acres);
@@ -145,7 +145,7 @@ export const SoilDoctor: React.FC = () => {
                   className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
                 >
                   <option value="">-- Manual Parameter Entry --</option>
-                  {plots.map((plot) => (
+                  {plots.map((plot: Plot) => (
                     <option key={plot.id} value={plot.id}>
                       {plot.plot_name} ({plot.size_acres} acres, {plot.soil_type})
                     </option>
@@ -162,7 +162,7 @@ export const SoilDoctor: React.FC = () => {
                 </label>
                 <select
                   value={targetCrop}
-                  onChange={(e) => setTargetCrop(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTargetCrop(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
                 >
                   {crops.map((c) => (
@@ -183,7 +183,7 @@ export const SoilDoctor: React.FC = () => {
                   min="0.1"
                   max="100"
                   value={sizeAcres}
-                  onChange={(e) => setSizeAcres(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSizeAcres(Number(e.target.value))}
                   className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
                   required
                 />
@@ -198,7 +198,7 @@ export const SoilDoctor: React.FC = () => {
                 </label>
                 <select
                   value={soilType}
-                  onChange={(e) => setSoilType(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSoilType(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
                 >
                   <option value="black_cotton">Black Cotton</option>
@@ -220,7 +220,7 @@ export const SoilDoctor: React.FC = () => {
                   min="4.0"
                   max="10.0"
                   value={soilPh}
-                  onChange={(e) => setSoilPh(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSoilPh(Number(e.target.value))}
                   className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
                 />
               </div>

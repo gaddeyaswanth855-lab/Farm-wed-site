@@ -21,7 +21,7 @@ import { useVoiceInput } from '../hooks/useVoiceInput';
 import { useSpeechSynthesis } from '../hooks/useSpeechSynthesis';
 import { diagnosePestApi, fetchPestHistory } from '../api/advisories';
 import { RemedyAccordion } from '../components/RemedyAccordion';
-import { PestDiagnosis } from '../types';
+import { PestDiagnosis, Plot } from '../types';
 
 export const PestDoctor: React.FC = () => {
   const { plots, selectedPlot, setSelectedPlot } = useFarm();
@@ -77,8 +77,8 @@ export const PestDoctor: React.FC = () => {
   ];
 
   const handleTogglePart = (part: string) => {
-    setSelectedParts((prev) =>
-      prev.includes(part) ? prev.filter((p) => p !== part) : [...prev, part]
+    setSelectedParts((prev: string[]) =>
+      prev.includes(part) ? prev.filter((p: string) => p !== part) : [...prev, part]
     );
   };
 
@@ -208,7 +208,7 @@ export const PestDoctor: React.FC = () => {
             </p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {history.map((item, idx) => (
+              {history.map((item: PestDiagnosis, idx: number) => (
                 <div
                   key={item.diagnosisId || idx}
                   onClick={() => {
@@ -265,8 +265,8 @@ export const PestDoctor: React.FC = () => {
                   </label>
                   <select
                     value={selectedPlot?.id || ''}
-                    onChange={(e) => {
-                      const p = plots.find((plot) => plot.id === e.target.value) || null;
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      const p = plots.find((plot: Plot) => plot.id === e.target.value) || null;
                       setSelectedPlot(p);
                       if (p?.current_crop) {
                         setCropName(p.current_crop.split(' ')[0]);
@@ -275,7 +275,7 @@ export const PestDoctor: React.FC = () => {
                     className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-rose-500"
                   >
                     <option value="">-- No specific plot (General query) --</option>
-                    {plots.map((plot) => (
+                    {plots.map((plot: Plot) => (
                       <option key={plot.id} value={plot.id}>
                         {plot.plot_name} ({plot.size_acres} ac, {plot.current_crop || 'Fallow'})
                       </option>
@@ -292,7 +292,7 @@ export const PestDoctor: React.FC = () => {
                 <input
                   type="text"
                   value={cropName}
-                  onChange={(e) => setCropName(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCropName(e.target.value)}
                   placeholder="e.g. Cotton, Soybean, Tomato, Onion"
                   className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-rose-500"
                   required
@@ -415,7 +415,7 @@ export const PestDoctor: React.FC = () => {
                 <textarea
                   rows={4}
                   value={symptomsText}
-                  onChange={(e) => setSymptomsText(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setSymptomsText(e.target.value)}
                   placeholder="Describe leaf yellowing, spots, holes, wilting, sticky secretion, pests seen..."
                   className="w-full bg-slate-950 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500 leading-relaxed"
                 />
